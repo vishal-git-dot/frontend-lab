@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+}
+
+/* BUTTON */
+
+.download-btn {
+  position: relative;
+
+  width: 220px;
+  height: 65px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.45);
+}
+
+/* LOADING STATE */
+
+.download-btn.loading {
+  width: 70px;
+  border-radius: 50%;
+}
+
+/* SUCCESS STATE */
+
+.download-btn.success {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* TEXT */
+
+.btn-text {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  transition: all 0.3s ease;
+
+  white-space: nowrap;
+}
+
+/* ICON */
+
+.icon {
+  position: absolute;
+
+  top: 50%;
+  right: 22px;
+
+  transform: translateY(-50%);
+
+  transition: all 0.3s ease;
+
+  font-size: 22px;
+}
+
+/* LOADING SPINNER PERFECTLY CENTERED */
+
+.download-btn.loading .icon {
+  left: 50%;
+  top: 50%;
+  right: auto;
+
+  transform: translate(-50%, -50%);
+
+  animation: spin 1s linear infinite;
+}
+
+/* HIDE TEXT WHILE LOADING */
+
+.download-btn.loading .btn-text {
+  opacity: 0;
+}
+
+/* STOP SPIN ON SUCCESS */
+
+.download-btn.success .icon {
+  animation: none;
+}
+
+/* SPINNER ANIMATION */
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
