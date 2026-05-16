@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #0f172a;
+}
+
+/* BUTTON */
+
+.download-btn {
+  position: relative;
+
+  width: 240px;
+  height: 65px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: #1e293b;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+}
+
+/* BUTTON TEXT */
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* LIQUID PROGRESS */
+
+.progress {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0%;
+  height: 100%;
+
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  );
+
+  transition: width 2.5s ease;
+}
+
+/* LOADING */
+
+.download-btn.loading .progress {
+  width: 100%;
+}
+
+/* SUCCESS */
+
+.download-btn.success {
+  background: #059669;
+}
+
+.download-btn.success .progress {
+  background: #10b981;
+}
