@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #0f172a;
+}
+
+/* BUTTON */
+
+.download-btn {
+  position: relative;
+
+  width: 240px;
+  height: 70px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: #111827;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: all 0.4s ease;
+}
+
+/* FILL ANIMATION */
+
+.fill {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 0%;
+  height: 100%;
+
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  );
+
+  transition: width 1.8s ease;
+}
+
+/* TEXT */
+
+.text {
+  position: relative;
+  z-index: 2;
+}
+
+/* ARROW */
+
+.arrow {
+  position: absolute;
+
+  right: 24px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 24px;
+
+  transition: all 1.8s ease;
+
+  z-index: 2;
+}
+
+/* LOADING STATE */
+
+.download-btn.loading .fill {
+  width: 100%;
+}
+
+.download-btn.loading .arrow {
+  right: calc(100% - 55px);
+}
+
+/* SUCCESS STATE */
+
+.download-btn.success {
+  background: #059669;
+}
+
+.download-btn.success .text {
+  color: white;
+}
+
+.download-btn.success .arrow {
+  right: 24px;
+}
