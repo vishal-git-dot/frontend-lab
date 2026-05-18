@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(
+    circle at top,
+    #1e293b,
+    #020617
+  );
+
+  overflow: hidden;
+}
+
+/* BUTTON */
+
+.download-btn {
+  position: relative;
+
+  width: 260px;
+  height: 70px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+  );
+
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: all 0.4s ease;
+
+  box-shadow:
+    0 0 20px rgba(37, 99, 235, 0.35),
+    0 10px 30px rgba(37, 99, 235, 0.25);
+}
+
+/* TEXT */
+
+.text {
+  position: relative;
+  z-index: 3;
+
+  transition: opacity 0.3s ease;
+}
+
+/* ROCKET */
+
+.rocket {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 28px;
+
+  opacity: 0;
+
+  z-index: 4;
+}
+
+/* SMOKE */
+
+.smoke {
+  position: absolute;
+
+  left: 50%;
+  bottom: 18px;
+
+  width: 12px;
+  height: 12px;
+
+  background: rgba(255,255,255,0.5);
+
+  border-radius: 50%;
+
+  transform: translateX(-50%);
+
+  opacity: 0;
+}
+
+/* LOADING STATE */
+
+.download-btn.loading {
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #6d28d9
+  );
+}
+
+.download-btn.loading .text {
+  opacity: 0;
+}
+
+.download-btn.loading .rocket {
+  opacity: 1;
+
+  animation: launch 2s ease forwards;
+}
+
+.download-btn.loading .smoke {
+  animation: smoke 0.5s linear infinite;
+}
+
+/* SUCCESS */
+
+.download-btn.success {
+  background: linear-gradient(
+    135deg,
+    #10b981,
+    #059669
+  );
+}
+
+/* ROCKET ANIMATION */
+
+@keyframes launch {
+
+  0% {
+    transform: translate(-50%, -50%);
+  }
+
+  30% {
+    transform: translate(-50%, -70%);
+  }
+
+  60% {
+    transform: translate(-50%, -120%);
+  }
+
+  100% {
+    transform: translate(-50%, -250%);
+    opacity: 0;
+  }
+}
+
+/* SMOKE EFFECT */
+
+@keyframes smoke {
+
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(20px) scale(2.5);
+    opacity: 0;
+  }
+}
