@@ -1,0 +1,57 @@
+name: Auto Gallery Generator
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+
+  generate-gallery:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ========================================
+      # CHECKOUT REPOSITORY
+      # ========================================
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # ========================================
+      # SETUP NODE.JS
+      # ========================================
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # ========================================
+      # GENERATE GALLERY
+      # ========================================
+
+      - name: Run Gallery Generator
+        run: |
+          node scripts/generate-gallery.js
+
+      # ========================================
+      # COMMIT GENERATED FILES
+      # ========================================
+
+      - name: Commit and Push Changes
+        run: |
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/components.json
+
+          git diff --cached --quiet || git commit -m "Auto update gallery"
+
+          git push
