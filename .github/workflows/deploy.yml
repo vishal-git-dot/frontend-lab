@@ -10,21 +10,49 @@ permissions:
   pages: write
   id-token: write
 
+# Prevent multiple deployments running simultaneously
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
+
   deploy:
+
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
+
+      # ========================================
+      # CHECKOUT REPOSITORY
+      # ========================================
+
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      # ========================================
+      # SETUP GITHUB PAGES
+      # ========================================
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Artifact
+      # ========================================
+      # UPLOAD WEBSITE FILES
+      # ========================================
+
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
+      # ========================================
+      # DEPLOY WEBSITE
+      # ========================================
 
       - name: Deploy to GitHub Pages
         id: deployment
