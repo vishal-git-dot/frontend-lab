@@ -1,35 +1,35 @@
 [
   {
     "title": "Download Button Type 1",
-    "description": "Modern frontend UI experiment with smooth animations.",
+    "description": "Lightweight HTML, CSS, and JavaScript interaction demo.",
     "category": "Download Button",
     "type": "Type 1",
     "path": "animations/download-button/type-1/"
   },
   {
     "title": "Download Button Type 2",
-    "description": "Modern frontend UI experiment with smooth animations.",
+    "description": "Creative frontend animation showcasing modern UI motion.",
     "category": "Download Button",
     "type": "Type 2",
     "path": "animations/download-button/type-2/"
   },
   {
     "title": "Download Button Type 3",
-    "description": "Lightweight HTML, CSS, and JavaScript interaction demo.",
+    "description": "Responsive interactive component built using vanilla frontend.",
     "category": "Download Button",
     "type": "Type 3",
     "path": "animations/download-button/type-3/"
   },
   {
     "title": "Download Button Type 4",
-    "description": "Modern frontend UI experiment with smooth animations.",
+    "description": "Modern reusable frontend component with animation effects.",
     "category": "Download Button",
     "type": "Type 4",
     "path": "animations/download-button/type-4/"
   },
   {
     "title": "Download Button Type 5",
-    "description": "Responsive interactive component built using vanilla frontend.",
+    "description": "Creative frontend animation showcasing modern UI motion.",
     "category": "Download Button",
     "type": "Type 5",
     "path": "animations/download-button/type-5/"
