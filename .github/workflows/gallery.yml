@@ -14,7 +14,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # Prevent infinite loop
+    # Prevent infinite loop from bot commits
     if: github.actor != 'github-actions[bot]'
 
     steps:
@@ -36,15 +36,15 @@ jobs:
           node-version: 20
 
       # ========================================
-      # GENERATE GALLERY
+      # GENERATE GALLERY JSON
       # ========================================
 
-      - name: Run Gallery Generator
+      - name: Generate Gallery
         run: |
           node scripts/generate-gallery.js
 
       # ========================================
-      # COMMIT GENERATED FILES
+      # COMMIT CHANGES
       # ========================================
 
       - name: Commit and Push Changes
@@ -55,6 +55,7 @@ jobs:
 
           git add data/components.json
 
+          # Only commit if changes exist
           git diff --cached --quiet || git commit -m "Auto update gallery"
 
           git push
