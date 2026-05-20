@@ -1,0 +1,95 @@
+name: Frontend Lab Automation
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Prevent overlapping deployments
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+
+  build-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    # Prevent infinite loop from auto commits
+    if: github.actor != 'github-actions[bot]'
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+
+      # ========================================
+      # CHECKOUT REPOSITORY
+      # ========================================
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # ========================================
+      # SETUP NODE.JS
+      # ========================================
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # ========================================
+      # GENERATE GALLERY
+      # ========================================
+
+      - name: Generate Gallery
+        run: |
+          node scripts/generate-gallery.js
+
+      # ========================================
+      # COMMIT GENERATED FILES
+      # ========================================
+
+      - name: Commit Gallery Updates
+        run: |
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/components.json
+
+          git diff --cached --quiet || git commit -m "Auto update gallery"
+
+          git push
+
+      # ========================================
+      # SETUP GITHUB PAGES
+      # ========================================
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # ========================================
+      # UPLOAD WEBSITE FILES
+      # ========================================
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      # ========================================
+      # DEPLOY WEBSITE
+      # ========================================
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
