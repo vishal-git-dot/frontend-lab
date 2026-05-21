@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at top, #0b1020, #020617);
+  font-family: system-ui;
+}
+
+/* =========================
+   BUTTON CONTAINER (TRUE CENTER SYSTEM)
+========================= */
+
+.launch-btn {
+  width: 240px;
+  height: 240px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* =========================
+   SVG RING (PERFECT ALIGNMENT)
+========================= */
+
+.ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 10;
+}
+
+.progress {
+  fill: none;
+  stroke: #60a5fa;
+  stroke-width: 10;
+  stroke-linecap: round;
+
+  stroke-dasharray: 565;
+  stroke-dashoffset: 565;
+
+  transition: stroke-dashoffset 1s linear;
+
+  filter: drop-shadow(0 0 10px #60a5fa);
+}
+
+/* =========================
+   GLOW (CENTERED BY GRID)
+========================= */
+
+.glow {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96,165,250,0.25), transparent 70%);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* =========================
+   CORE (NO TRANSFORM CENTER HACKS)
+========================= */
+
+.core {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  box-shadow:
+    inset 0 0 20px rgba(255,255,255,0.04),
+    0 0 35px rgba(96,165,250,0.25);
+
+  z-index: 2;
+}
+
+.rocket {
+  font-size: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.text {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: white;
+  font-weight: 700;
+}
+
+/* hover */
+.launch-btn:hover .rocket {
+  transform: translateY(-4px);
+}
+
+/* =========================
+   STATES
+========================= */
+
+.launching .rocket {
+  animation: thrust 0.25s infinite alternate;
+}
+
+@keyframes thrust {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+.launched .rocket {
+  animation: fly 1.2s ease forwards;
+}
+
+@keyframes fly {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-260px) scale(1.5); opacity: 0; }
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px white;
+}
