@@ -1,20 +1,54 @@
+# Updated `index.html`
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
 
     <title>Frontend Lab</title>
 
+    <!-- =========================
+         META
+    ========================== -->
+
+    <meta
+        name="description"
+        content="Modern frontend showcase platform featuring UI components, animations, effects, and frontend experiments built using HTML, CSS, and JavaScript."
+    />
+
+    <!-- =========================
+         GOOGLE FONTS
+    ========================== -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
+    <!-- =========================
+         STYLES
+    ========================== -->
+
     <style>
+
+        /* =========================
+           RESET
+        ========================== */
 
         *{
             margin:0;
@@ -23,11 +57,17 @@
         }
 
         :root{
+
             --bg:#070b14;
-            --card:rgba(255,255,255,0.06);
-            --border:rgba(255,255,255,0.08);
+
+            --card:
+                rgba(255,255,255,0.06);
+
+            --border:
+                rgba(255,255,255,0.08);
 
             --text:#ffffff;
+
             --muted:#b8bfd1;
 
             --primary:#5ea2ff;
@@ -49,18 +89,25 @@
         }
 
         body{
+
             font-family:'Inter',sans-serif;
+
             background:var(--bg);
+
             color:var(--text);
+
             overflow-x:hidden;
         }
 
         body::before{
+
             content:'';
+
             position:fixed;
             inset:0;
 
             background:
+
                 radial-gradient(
                     circle at top left,
                     rgba(94,162,255,0.18),
@@ -74,11 +121,19 @@
                 );
 
             pointer-events:none;
+
             z-index:-1;
         }
 
+        img{
+            max-width:100%;
+            display:block;
+        }
+
         .container{
+
             width:min(1200px, calc(100% - 2rem));
+
             margin:auto;
         }
 
@@ -87,8 +142,10 @@
         ========================== */
 
         header{
+
             position:sticky;
             top:0;
+
             z-index:1000;
 
             backdrop-filter:blur(18px);
@@ -101,7 +158,9 @@
         }
 
         .navbar{
+
             display:flex;
+
             align-items:center;
             justify-content:space-between;
 
@@ -109,12 +168,15 @@
         }
 
         .logo{
+
             font-size:1.5rem;
             font-weight:800;
+
             letter-spacing:-1px;
         }
 
         .logo span{
+
             background:var(--gradient);
 
             -webkit-background-clip:text;
@@ -122,15 +184,21 @@
         }
 
         nav{
+
             display:flex;
             align-items:center;
+
             gap:1.5rem;
         }
 
         nav a{
+
             color:var(--muted);
+
             text-decoration:none;
+
             transition:0.3s ease;
+
             font-size:0.95rem;
         }
 
@@ -143,27 +211,39 @@
         ========================== */
 
         .hero{
+
             min-height:92vh;
+
             display:flex;
             align-items:center;
+
             padding:4rem 0;
         }
 
         .hero-grid{
+
             display:grid;
+
             grid-template-columns:1.2fr 1fr;
+
             gap:4rem;
+
             align-items:center;
         }
 
         .hero-content h1{
+
             font-size:clamp(3rem, 7vw, 5.8rem);
+
             line-height:1;
+
             margin-bottom:1.5rem;
+
             letter-spacing:-3px;
         }
 
         .hero-content h1 span{
+
             background:var(--gradient);
 
             -webkit-background-clip:text;
@@ -171,9 +251,11 @@
         }
 
         .hero-content p{
+
             color:var(--muted);
 
             line-height:1.8;
+
             font-size:1.05rem;
 
             max-width:620px;
@@ -182,16 +264,22 @@
         }
 
         .hero-buttons{
+
             display:flex;
+
             gap:1rem;
+
             flex-wrap:wrap;
         }
 
         .btn{
+
             padding:1rem 1.5rem;
+
             border-radius:14px;
 
             text-decoration:none;
+
             border:none;
 
             font-weight:600;
@@ -199,12 +287,15 @@
             transition:0.3s ease;
 
             display:inline-flex;
+
             align-items:center;
             justify-content:center;
         }
 
         .btn-primary{
+
             background:var(--gradient);
+
             color:white;
 
             box-shadow:
@@ -216,6 +307,7 @@
         }
 
         .btn-secondary{
+
             background:
                 rgba(255,255,255,0.06);
 
@@ -226,12 +318,13 @@
         }
 
         .btn-secondary:hover{
+
             background:
                 rgba(255,255,255,0.1);
         }
 
         /* =========================
-           HERO CARD
+           HERO PREVIEW
         ========================== */
 
         .hero-preview{
@@ -239,6 +332,7 @@
         }
 
         .floating-card{
+
             position:relative;
 
             background:
@@ -257,15 +351,19 @@
         }
 
         .mini-nav{
+
             display:flex;
+
             gap:0.5rem;
 
             margin-bottom:2rem;
         }
 
         .mini-dot{
+
             width:12px;
             height:12px;
+
             border-radius:50%;
 
             background:
@@ -273,12 +371,16 @@
         }
 
         .preview-grid{
+
             display:grid;
+
             grid-template-columns:repeat(2,1fr);
+
             gap:1rem;
         }
 
         .preview-box{
+
             height:110px;
 
             border-radius:18px;
@@ -290,14 +392,17 @@
                 1px solid rgba(255,255,255,0.08);
 
             display:flex;
+
             align-items:center;
             justify-content:center;
 
             position:relative;
+
             overflow:hidden;
         }
 
         .preview-box::after{
+
             content:'';
 
             position:absolute;
@@ -319,21 +424,27 @@
         }
 
         @keyframes shimmer{
+
             100%{
                 transform:translateX(120%);
             }
         }
 
-        .preview-button{
+        .hero-preview-button{
+
             padding:0.9rem 1.4rem;
 
             border:none;
+
             border-radius:14px;
 
             background:var(--gradient);
 
             color:white;
+
             font-weight:600;
+
+            z-index:1;
         }
 
         /* =========================
@@ -345,122 +456,50 @@
         }
 
         .section-title{
+
             text-align:center;
+
             margin-bottom:4rem;
         }
 
         .section-title h2{
+
             font-size:clamp(2rem,5vw,3rem);
+
             margin-bottom:1rem;
         }
 
         .section-title p{
+
             color:var(--muted);
 
             max-width:700px;
+
             margin:auto;
 
             line-height:1.8;
         }
 
         /* =========================
-           COMPONENTS GRID
+           COMPONENT GRID
         ========================== */
 
-        .card-preview{
-
-    width: 100%;
-    height: 220px;
-
-    overflow: hidden;
-
-    position: relative;
-
-    border-radius: 18px;
-
-    background: rgba(255,255,255,0.04);
-
-    margin-bottom: 1rem;
-}
-
-.card-preview-image{
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: transform 0.5s ease;
-}
-
-.component-card:hover .card-preview-image{
-
-    transform: scale(1.05);
-}
-
-.preview-overlay{
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,0.7),
-            rgba(0,0,0,0.1)
-        );
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-
-    transition: opacity 0.3s ease;
-}
-
-.component-card:hover .preview-overlay{
-
-    opacity: 1;
-}
-
-.preview-button{
-
-    padding: 0.9rem 1.4rem;
-
-    border-radius: 999px;
-
-    text-decoration: none;
-
-    font-weight: 600;
-
-    background: white;
-
-    color: black;
-
-    transition: transform 0.3s ease;
-}
-
-.preview-button:hover{
-
-    transform: scale(1.05);
-}
-
-        
         .components-grid{
+
             display:grid;
 
             grid-template-columns:
-                repeat(auto-fit,minmax(260px,1fr));
+                repeat(auto-fit,minmax(300px,1fr));
 
             gap:1.5rem;
         }
 
+        /* =========================
+           COMPONENT CARD
+        ========================== */
+
         .component-card{
+
             background:var(--card);
 
             border:
@@ -468,46 +507,243 @@
 
             border-radius:24px;
 
-            padding:1.5rem;
+            padding:1.25rem;
 
             transition:0.35s ease;
 
             position:relative;
+
             overflow:hidden;
+
+            backdrop-filter:blur(12px);
         }
 
         .component-card:hover{
+
             transform:translateY(-8px);
 
             border-color:
                 rgba(94,162,255,0.35);
         }
 
- 
+        /* =========================
+           CARD PREVIEW
+        ========================== */
 
-        .component-card h3{
-            font-size:1.2rem;
-            margin-bottom:0.7rem;
+        .card-preview{
+
+            width:100%;
+
+            aspect-ratio:16 / 10;
+
+            min-height:220px;
+
+            overflow:hidden;
+
+            position:relative;
+
+            border-radius:18px;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            margin-bottom:1.2rem;
         }
 
-        .component-card p{
+        .card-preview-image{
+
+            width:100%;
+            height:100%;
+
+            object-fit:cover;
+
+            display:block;
+
+            transition:transform 0.5s ease;
+        }
+
+        .component-card:hover .card-preview-image{
+            transform:scale(1.05);
+        }
+
+        .preview-overlay{
+
+            position:absolute;
+
+            inset:0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.75),
+                    rgba(0,0,0,0.15)
+                );
+
+            display:flex;
+
+            align-items:center;
+            justify-content:center;
+
+            opacity:0;
+
+            transition:opacity 0.3s ease;
+        }
+
+        .component-card:hover .preview-overlay{
+            opacity:1;
+        }
+
+        .preview-button{
+
+            padding:0.9rem 1.4rem;
+
+            border-radius:999px;
+
+            text-decoration:none;
+
+            font-weight:600;
+
+            background:white;
+
+            color:black;
+
+            transition:transform 0.3s ease;
+        }
+
+        .preview-button:hover{
+            transform:scale(1.05);
+        }
+
+        /* =========================
+           CARD CONTENT
+        ========================== */
+
+        .card-content{
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:0.9rem;
+        }
+
+        .card-category{
+
+            display:inline-flex;
+
+            width:max-content;
+
+            padding:0.35rem 0.8rem;
+
+            border-radius:999px;
+
+            background:
+                rgba(94,162,255,0.12);
+
+            color:#8fc0ff;
+
+            font-size:0.8rem;
+
+            font-weight:600;
+        }
+
+        .card-title{
+
+            font-size:1.2rem;
+
+            font-weight:700;
+        }
+
+        .card-description{
+
             color:var(--muted);
 
             line-height:1.7;
-            font-size:0.95rem;
 
-            margin-bottom:1.5rem;
+            font-size:0.95rem;
         }
 
         .card-link{
+
             text-decoration:none;
+
             color:white;
 
             font-weight:600;
 
             display:inline-flex;
+
             align-items:center;
+
             gap:0.5rem;
+
+            margin-top:0.3rem;
+        }
+
+        .card-link:hover{
+            opacity:0.8;
+        }
+
+        /* =========================
+           SKELETON LOADING
+        ========================== */
+
+        .skeleton{
+
+            height:360px;
+
+            border-radius:24px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.03),
+                    rgba(255,255,255,0.07),
+                    rgba(255,255,255,0.03)
+                );
+
+            background-size:200% 100%;
+
+            animation:skeleton-loading 1.4s infinite;
+        }
+
+        @keyframes skeleton-loading{
+
+            100%{
+                background-position:-200% 0;
+            }
+        }
+
+        /* =========================
+           EMPTY / ERROR STATE
+        ========================== */
+
+        .gallery-error{
+
+            width:100%;
+
+            text-align:center;
+
+            padding:3rem;
+
+            border-radius:24px;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+        }
+
+        .gallery-error h3{
+
+            font-size:1.5rem;
+
+            margin-bottom:0.8rem;
+        }
+
+        .gallery-error p{
+            color:var(--muted);
         }
 
         /* =========================
@@ -515,6 +751,7 @@
         ========================== */
 
         .stats{
+
             display:grid;
 
             grid-template-columns:
@@ -524,6 +761,7 @@
         }
 
         .stat-card{
+
             background:var(--card);
 
             border:
@@ -537,12 +775,15 @@
         }
 
         .stat-card h3{
+
             font-size:3rem;
+
             margin-bottom:0.5rem;
 
             background:var(--gradient);
 
             -webkit-background-clip:text;
+
             -webkit-text-fill-color:transparent;
         }
 
@@ -555,8 +796,11 @@
         ========================== */
 
         footer{
+
             padding:2rem 0 4rem;
+
             text-align:center;
+
             color:var(--muted);
         }
 
@@ -604,6 +848,10 @@
             .preview-grid{
                 grid-template-columns:1fr;
             }
+
+            .components-grid{
+                grid-template-columns:1fr;
+            }
         }
 
         @media(max-width:480px){
@@ -621,7 +869,23 @@
             }
         }
 
+        @media (hover:none){
+
+            .preview-overlay{
+
+                opacity:1;
+
+                background:
+                    linear-gradient(
+                        to top,
+                        rgba(0,0,0,0.55),
+                        rgba(0,0,0,0.15)
+                    );
+            }
+        }
+
     </style>
+
 </head>
 <body>
 
@@ -638,13 +902,23 @@
             </div>
 
             <nav>
+
                 <a href="#home">Home</a>
-                <a href="#components">Components</a>
+
+                <a href="#components">
+                    Components
+                </a>
+
                 <a href="#stats">Stats</a>
 
-                <a href="https://github.com/">
+                <a
+                    href="https://github.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     GitHub
                 </a>
+
             </nav>
 
         </div>
@@ -674,7 +948,7 @@
                     <p>
                         A growing collection of modern UI components,
                         frontend experiments, micro-interactions,
-                        and animation ideas built using pure
+                        effects, and animation ideas built using pure
                         HTML, CSS, and JavaScript.
                     </p>
 
@@ -690,6 +964,8 @@
                         <a
                             href="https://github.com/"
                             class="btn btn-secondary"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             View Repository
                         </a>
@@ -713,25 +989,25 @@
                         <div class="preview-grid">
 
                             <div class="preview-box">
-                                <button class="preview-button">
+                                <button class="hero-preview-button">
                                     Download
                                 </button>
                             </div>
 
                             <div class="preview-box">
-                                <button class="preview-button">
+                                <button class="hero-preview-button">
                                     Install
                                 </button>
                             </div>
 
                             <div class="preview-box">
-                                <button class="preview-button">
+                                <button class="hero-preview-button">
                                     Launch
                                 </button>
                             </div>
 
                             <div class="preview-box">
-                                <button class="preview-button">
+                                <button class="hero-preview-button">
                                     Explore
                                 </button>
                             </div>
@@ -791,7 +1067,7 @@
 
                     <p>
                         Designed to scale into a complete frontend
-                        component and animation showcase.
+                        component and animation showcase platform.
                     </p>
 
                 </div>
@@ -800,7 +1076,7 @@
 
                     <div class="stat-card">
                         <h3 id="componentCount">0</h3>
-                        <p>Animated Components</p>
+                        <p>Total Components</p>
                     </div>
 
                     <div class="stat-card">
@@ -810,7 +1086,7 @@
 
                     <div class="stat-card">
                         <h3>0</h3>
-                        <p>Dependencies</p>
+                        <p>Framework Lock-In</p>
                     </div>
 
                     <div class="stat-card">
@@ -826,7 +1102,9 @@
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer>
 
@@ -844,29 +1122,9 @@
          AUTO GALLERY SCRIPT
     ========================== -->
 
-   <script>
+    <script>
 
-    async function loadGallery(){
-
-        try{
-
-            /*
-            ========================================
-            FETCH COMPONENT DATA
-            ========================================
-            */
-
-            const response =
-                await fetch('./data/components.json');
-
-            const components =
-                await response.json();
-
-            /*
-            ========================================
-            ELEMENTS
-            ========================================
-            */
+        async function loadGallery(){
 
             const gallery =
                 document.getElementById('gallery');
@@ -874,108 +1132,162 @@
             const componentCount =
                 document.getElementById('componentCount');
 
-            /*
-            ========================================
-            UPDATE STATS
-            ========================================
-            */
+            /* =========================
+               SKELETON LOADING
+            ========================== */
 
-            componentCount.innerText =
-                components.length + '+';
+            gallery.innerHTML = `
 
-            /*
-            ========================================
-            RENDER COMPONENT CARDS
-            ========================================
-            */
+                <div class="skeleton"></div>
+                <div class="skeleton"></div>
+                <div class="skeleton"></div>
 
-            gallery.innerHTML =
-                components.map(component => `
+            `;
 
-                    <div class="component-card">
+            try{
 
-                        <!-- =========================
-                             CARD PREVIEW
-                        ========================== -->
+                /* =========================
+                   FETCH COMPONENTS
+                ========================== */
 
-                        <div class="card-preview">
+                const response =
+                    await fetch('./data/components.json');
 
-                            <img
-                                src="${
-                                    component.preview ||
-                                    './assets/images/fallback-preview.png'
-                                }"
+                if(!response.ok){
+                    throw new Error('Failed to fetch gallery data');
+                }
 
-                                alt="${component.title}"
+                const components =
+                    await response.json();
 
-                                loading="lazy"
+                /* =========================
+                   UPDATE STATS
+                ========================== */
 
-                                class="card-preview-image"
-                            >
+                componentCount.innerText =
+                    components.length + '+';
 
-                            <div class="preview-overlay">
+                /* =========================
+                   EMPTY STATE
+                ========================== */
+
+                if(components.length === 0){
+
+                    gallery.innerHTML = `
+
+                        <div class="gallery-error">
+
+                            <h3>
+                                No Components Yet
+                            </h3>
+
+                            <p>
+                                Components will appear here automatically.
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+                }
+
+                /* =========================
+                   RENDER COMPONENTS
+                ========================== */
+
+                gallery.innerHTML =
+
+                    components.map(component => `
+
+                        <div class="component-card">
+
+                            <!-- CARD PREVIEW -->
+
+                            <div class="card-preview">
+
+                                <img
+
+                                    src="${
+                                        component.preview ||
+                                        './assets/images/fallback-preview.png'
+                                    }"
+
+                                    alt="${component.title}"
+
+                                    loading="lazy"
+
+                                    decoding="async"
+
+                                    class="card-preview-image"
+
+                                    onerror="
+                                        this.onerror=null;
+                                        this.src='./assets/images/fallback-preview.png';
+                                    "
+                                >
+
+                                <div class="preview-overlay">
+
+                                    <a
+                                        href="${component.path}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="preview-button"
+                                    >
+                                        Explore
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                            <!-- CARD CONTENT -->
+
+                            <div class="card-content">
+
+                                <span class="card-category">
+
+                                    ${component.collection || 'Frontend'}
+
+                                </span>
+
+                                <h3 class="card-title">
+
+                                    ${component.title}
+
+                                </h3>
+
+                                <p class="card-description">
+
+                                    ${component.description}
+
+                                </p>
 
                                 <a
                                     href="${component.path}"
                                     target="_blank"
-                                    class="preview-button"
+                                    rel="noopener noreferrer"
+                                    class="card-link"
                                 >
-                                    Explore
+                                    Open Demo →
                                 </a>
 
                             </div>
 
                         </div>
 
-                        <!-- =========================
-                             CARD CONTENT
-                        ========================== -->
+                    `).join('');
+            }
 
-                        <div class="card-content">
+            catch(error){
 
-                            <span class="card-category">
+                console.error(
+                    'Gallery failed to load:',
+                    error
+                );
 
-                                ${component.collection || 'Frontend'}
-
-                            </span>
-
-                            <h3 class="card-title">
-
-                                ${component.title}
-
-                            </h3>
-
-                            <p class="card-description">
-
-                                ${component.description}
-
-                            </p>
-
-                            <a
-                                href="${component.path}"
-                                target="_blank"
-                                class="card-link"
-                            >
-                                Open Demo →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                `).join('');
-
-        }
-
-        catch(error){
-
-            console.error(
-                'Gallery failed to load:',
-                error
-            );
-
-            document.getElementById('gallery')
-                .innerHTML = `
+                gallery.innerHTML = `
 
                     <div class="gallery-error">
 
@@ -990,18 +1302,17 @@
                     </div>
 
                 `;
+            }
         }
-    }
 
-    /*
-    ========================================
-    LOAD GALLERY
-    ========================================
-    */
+        /* =========================
+           LOAD GALLERY
+        ========================== */
 
-    loadGallery();
+        loadGallery();
 
-</script>
+    </script>
 
 </body>
 </html>
+```
