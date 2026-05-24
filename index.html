@@ -776,50 +776,116 @@
          AUTO GALLERY SCRIPT
     ========================== -->
 
-    <script>
+   <script>
 
-        async function loadGallery(){
+    async function loadGallery(){
 
-            try{
+        try{
 
-                const response =
-                    await fetch('./data/components.json');
+            /*
+            ========================================
+            FETCH COMPONENT DATA
+            ========================================
+            */
 
-                const components =
-                    await response.json();
+            const response =
+                await fetch('./data/components.json');
 
-                const gallery =
-                    document.getElementById('gallery');
+            const components =
+                await response.json();
 
-                const componentCount =
-                    document.getElementById('componentCount');
+            /*
+            ========================================
+            ELEMENTS
+            ========================================
+            */
 
-                componentCount.innerText =
-                    components.length + '+';
+            const gallery =
+                document.getElementById('gallery');
 
-                gallery.innerHTML =
-                    components.map(component => `
+            const componentCount =
+                document.getElementById('componentCount');
 
-                        <div class="component-card">
+            /*
+            ========================================
+            UPDATE STATS
+            ========================================
+            */
 
-                            <div class="card-preview">
+            componentCount.innerText =
+                components.length + '+';
 
-                                <button class="preview-button">
+            /*
+            ========================================
+            RENDER COMPONENT CARDS
+            ========================================
+            */
+
+            gallery.innerHTML =
+                components.map(component => `
+
+                    <div class="component-card">
+
+                        <!-- =========================
+                             CARD PREVIEW
+                        ========================== -->
+
+                        <div class="card-preview">
+
+                            <img
+                                src="${
+                                    component.preview ||
+                                    './assets/images/fallback-preview.png'
+                                }"
+
+                                alt="${component.title}"
+
+                                loading="lazy"
+
+                                class="card-preview-image"
+                            >
+
+                            <div class="preview-overlay">
+
+                                <a
+                                    href="${component.path}"
+                                    target="_blank"
+                                    class="preview-button"
+                                >
                                     Explore
-                                </button>
+                                </a>
 
                             </div>
 
-                            <h3>
+                        </div>
+
+                        <!-- =========================
+                             CARD CONTENT
+                        ========================== -->
+
+                        <div class="card-content">
+
+                            <span class="card-category">
+
+                                ${component.collection || 'Frontend'}
+
+                            </span>
+
+                            <h3 class="card-title">
+
                                 ${component.title}
+
                             </h3>
 
-                            <p>
+                            <p class="card-description">
+
                                 ${component.description}
+
                             </p>
 
                             <a
                                 href="${component.path}"
+                                target="_blank"
                                 class="card-link"
                             >
                                 Open Demo →
@@ -827,33 +893,47 @@
 
                         </div>
 
-                    `).join('');
+                    </div>
 
-            }
+                `).join('');
 
-            catch(error){
-
-                console.error(
-                    'Gallery failed to load:',
-                    error
-                );
-
-                document.getElementById('gallery')
-                    .innerHTML = `
-                        <p style="
-                            color:#b8bfd1;
-                            text-align:center;
-                            width:100%;
-                        ">
-                            Failed to load components.
-                        </p>
-                    `;
-            }
         }
 
-        loadGallery();
+        catch(error){
 
-    </script>
+            console.error(
+                'Gallery failed to load:',
+                error
+            );
+
+            document.getElementById('gallery')
+                .innerHTML = `
+
+                    <div class="gallery-error">
+
+                        <h3>
+                            Failed to load components
+                        </h3>
+
+                        <p>
+                            Please try again later.
+                        </p>
+
+                    </div>
+
+                `;
+        }
+    }
+
+    /*
+    ========================================
+    LOAD GALLERY
+    ========================================
+    */
+
+    loadGallery();
+
+</script>
 
 </body>
 </html>
