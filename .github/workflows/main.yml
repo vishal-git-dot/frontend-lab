@@ -10,6 +10,7 @@ permissions:
   pages: write
   id-token: write
 
+# Prevent overlapping deployments
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -43,10 +44,34 @@ jobs:
           node-version: 20
 
       # ========================================
-      # GENERATE GALLERY
+      # INSTALL DEPENDENCIES
       # ========================================
 
-      - name: Generate Gallery
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      # ========================================
+      # INSTALL PLAYWRIGHT
+      # ========================================
+
+      - name: Install Playwright Browsers
+        run: |
+          npx playwright install --with-deps
+
+      # ========================================
+      # GENERATE PREVIEW IMAGES
+      # ========================================
+
+      - name: Generate Component Previews
+        run: |
+          node scripts/generate-previews.js
+
+      # ========================================
+      # GENERATE GALLERY JSON
+      # ========================================
+
+      - name: Generate Gallery JSON
         run: |
           node scripts/generate-gallery.js
 
@@ -54,7 +79,7 @@ jobs:
       # SETUP GITHUB PAGES
       # ========================================
 
-      - name: Setup Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
       # ========================================
