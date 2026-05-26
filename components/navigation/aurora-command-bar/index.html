@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aurora Command Bar</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="noise"></div>
+  <div class="aurora aurora-1"></div>
+  <div class="aurora aurora-2"></div>
+
+  <main class="wrapper">
+
+    <div class="command-shell">
+
+      <div class="shell-top">
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="shell-title">
+          AURORA COMMAND
+        </div>
+      </div>
+
+      <div class="search-box">
+
+        <div class="search-glow"></div>
+
+        <div class="search-left">
+          <span class="search-icon">⌘</span>
+
+          <input
+            type="text"
+            placeholder="Search commands, files, actions..."
+            id="commandInput"
+          />
+        </div>
+
+        <button class="action-btn">
+          ENTER
+        </button>
+
+      </div>
+
+      <div class="results">
+
+        <div class="command-item active">
+          <div class="command-icon">✦</div>
+
+          <div class="command-content">
+            <h3>Open Dashboard</h3>
+            <p>Launch analytics overview panel</p>
+          </div>
+
+          <kbd>↵</kbd>
+        </div>
+
+        <div class="command-item">
+          <div class="command-icon">◎</div>
+
+          <div class="command-content">
+            <h3>Profile Settings</h3>
+            <p>Manage account preferences</p>
+          </div>
+
+          <kbd>⌘P</kbd>
+        </div>
+
+        <div class="command-item">
+          <div class="command-icon">◈</div>
+
+          <div class="command-content">
+            <h3>Project Explorer</h3>
+            <p>Browse active repositories</p>
+          </div>
+
+          <kbd>⌘K</kbd>
+        </div>
+
+        <div class="command-item">
+          <div class="command-icon">✉</div>
+
+          <div class="command-content">
+            <h3>Messages</h3>
+            <p>Open communication center</p>
+          </div>
+
+          <kbd>⌘M</kbd>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
