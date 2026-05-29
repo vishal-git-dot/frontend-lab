@@ -28,6 +28,11 @@ const OUTPUT_FILE = path.join(
     'components.json'
 );
 
+const STATS_FILE = path.join(
+    OUTPUT_DIR,
+    'stats.json'
+);
+
 /*
 ========================================
  HELPERS
@@ -48,7 +53,11 @@ function fileExists(filePath){
     return fs.existsSync(filePath);
 }
 
-function createDescription(collection, category, type){
+function createDescription(
+    collection,
+    category,
+    type
+){
 
     return `${formatTitle(type)} is a modern ${formatTitle(category)} ${formatTitle(collection)} built using HTML, CSS, and JavaScript.`;
 }
@@ -83,6 +92,18 @@ function generateGallery(){
 
     /*
     ========================================
+    LIVE STATS TRACKERS
+    ========================================
+    */
+
+    const collectionSet = new Set();
+
+    const categorySet = new Set();
+
+    let previewCount = 0;
+
+    /*
+    ========================================
     SCAN ALL COLLECTIONS
     ========================================
     */
@@ -106,6 +127,10 @@ function generateGallery(){
 
             return;
         }
+
+        collectionSet.add(
+            formatTitle(collection)
+        );
 
         console.log(
             `\nScanning Collection: ${collection}`
@@ -138,6 +163,10 @@ function generateGallery(){
             ){
                 return;
             }
+
+            categorySet.add(
+                formatTitle(category)
+            );
 
             console.log(
                 `  Category: ${category}`
@@ -194,19 +223,25 @@ function generateGallery(){
 
                 /*
                 --------------------------------
-                Optional preview image
+                Preview image
                 --------------------------------
                 */
 
+                const previewFile =
+                    path.join(
+                        typePath,
+                        'preview.png'
+                    );
+
                 const previewImage =
-                    fileExists(
-                        path.join(
-                            typePath,
-                            'preview.png'
-                        )
-                    )
+                    fileExists(previewFile)
                     ? `${collection}/${category}/${type}/preview.png`
                     : null;
+
+                if(previewImage){
+
+                    previewCount++;
+                }
 
                 /*
                 --------------------------------
@@ -220,7 +255,7 @@ function generateGallery(){
                         `${collection}-${category}-${type}`,
 
                     title:
-                        `${formatTitle(type)}`,
+                        formatTitle(type),
 
                     description:
                         createDescription(
@@ -269,7 +304,37 @@ function generateGallery(){
 
     /*
     ========================================
-    WRITE JSON FILE
+    LIVE STATS OBJECT
+    ========================================
+    */
+
+    const stats = {
+
+        totalComponents:
+            components.length,
+
+        totalCollections:
+            collectionSet.size,
+
+        totalCategories:
+            categorySet.size,
+
+        totalPreviews:
+            previewCount,
+
+        collections:
+            [...collectionSet],
+
+        categories:
+            [...categorySet],
+
+        generatedAt:
+            new Date().toISOString()
+    };
+
+    /*
+    ========================================
+    WRITE COMPONENTS JSON
     ========================================
     */
 
@@ -282,16 +347,57 @@ function generateGallery(){
         )
     );
 
-    console.log('\n================================');
-    console.log(
-        ` Gallery generated successfully`
+    /*
+    ========================================
+    WRITE STATS JSON
+    ========================================
+    */
+
+    fs.writeFileSync(
+        STATS_FILE,
+        JSON.stringify(
+            stats,
+            null,
+            2
+        )
     );
+
+    /*
+    ========================================
+    CONSOLE OUTPUT
+    ========================================
+    */
+
+    console.log('\n================================');
+
+    console.log(
+        ' Gallery generated successfully'
+    );
+
     console.log(
         ` Total Components: ${components.length}`
     );
+
+    console.log(
+        ` Total Collections: ${collectionSet.size}`
+    );
+
+    console.log(
+        ` Total Categories: ${categorySet.size}`
+    );
+
+    console.log(
+        ` Total Previews: ${previewCount}`
+    );
+
     console.log(
         ` Output: data/components.json`
     );
+
+    console.log(
+        ` Stats: data/stats.json`
+    );
+
     console.log('================================\n');
 }
 
