@@ -1149,195 +1149,244 @@
 
     <script>
 
-        async function loadGallery(){
+    async function loadGallery(){
 
-            const gallery =
-                document.getElementById('gallery');
+        const gallery =
+            document.getElementById('gallery');
 
-            const componentCount =
-                document.getElementById('componentCount');
+        const componentCount =
+            document.getElementById('componentCount');
 
-            /* =========================
-               SKELETON LOADING
-            ========================== */
+        const collectionCount =
+            document.getElementById('collectionCount');
 
-            gallery.innerHTML = `
+        const categoryCount =
+            document.getElementById('categoryCount');
 
-                <div class="skeleton"></div>
-                <div class="skeleton"></div>
-                <div class="skeleton"></div>
+        /*
+        ========================================
+        SKELETON LOADING
+        ========================================
+        */
 
-            `;
+        gallery.innerHTML = `
 
-            try{
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
 
-                /* =========================
-                   FETCH COMPONENTS
-                ========================== */
+        `;
 
-                const response =
-                    await fetch('./data/components.json');
+        try{
 
-                if(!response.ok){
-                    throw new Error('Failed to fetch gallery data');
-                }
+            /*
+            ========================================
+            FETCH COMPONENTS
+            ========================================
+            */
 
-                const components =
-                    await response.json();
+            const response =
+                await fetch('./data/components.json');
 
-                /* =========================
-                   UPDATE STATS
-                ========================== */
+            if(!response.ok){
 
-                componentCount.innerText =
-                    components.length + '+';
-
-                /* =========================
-                   EMPTY STATE
-                ========================== */
-
-                if(components.length === 0){
-
-                    gallery.innerHTML = `
-
-                        <div class="gallery-error">
-
-                            <h3>
-                                No Components Yet
-                            </h3>
-
-                            <p>
-                                Components will appear here automatically.
-                            </p>
-
-                        </div>
-
-                    `;
-
-                    return;
-                }
-
-                /* =========================
-                   RENDER COMPONENTS
-                ========================== */
-
-                gallery.innerHTML =
-
-                    components.map(component => `
-
-                        <div class="component-card">
-
-                            <!-- CARD PREVIEW -->
-
-                            <div class="card-preview">
-
-                                <img
-
-                                    src="${
-                                        component.preview ||
-                                        './assets/images/fallback-preview.png'
-                                    }"
-
-                                    alt="${component.title}"
-
-                                    loading="lazy"
-
-                                    decoding="async"
-
-                                    class="card-preview-image"
-
-                                    onerror="
-                                        this.onerror=null;
-                                        this.src='./assets/images/fallback-preview.png';
-                                    "
-                                >
-
-                                <div class="preview-overlay">
-
-                                    <a
-                                        href="${component.path}"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="preview-button"
-                                    >
-                                        Explore
-                                    </a>
-
-                                </div>
-
-                            </div>
-
-                            <!-- CARD CONTENT -->
-
-                            <div class="card-content">
-
-                                <span class="card-category">
-
-                                    ${component.collection || 'Frontend'}
-
-                                </span>
-
-                                <h3 class="card-title">
-
-                                    ${component.title}
-
-                                </h3>
-
-                                <p class="card-description">
-
-                                    ${component.description}
-
-                                </p>
-
-                                <a
-                                    href="${component.path}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="card-link"
-                                >
-                                    Open Demo →
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    `).join('');
+                throw new Error(
+                    'Failed to fetch components'
+                );
             }
 
-            catch(error){
+            const components =
+                await response.json();
 
-                console.error(
-                    'Gallery failed to load:',
-                    error
+            /*
+            ========================================
+            FETCH LIVE STATS
+            ========================================
+            */
+
+            const statsResponse =
+                await fetch('./data/stats.json');
+
+            if(!statsResponse.ok){
+
+                throw new Error(
+                    'Failed to fetch stats'
                 );
+            }
+
+            const stats =
+                await statsResponse.json();
+
+            /*
+            ========================================
+            UPDATE LIVE STATS
+            ========================================
+            */
+
+            componentCount.innerText =
+                stats.totalComponents + '+';
+
+            collectionCount.innerText =
+                stats.totalCollections;
+
+            categoryCount.innerText =
+                stats.totalCategories;
+
+            /*
+            ========================================
+            EMPTY STATE
+            ========================================
+            */
+
+            if(components.length === 0){
 
                 gallery.innerHTML = `
 
                     <div class="gallery-error">
 
                         <h3>
-                            Failed to load components
+                            No Components Yet
                         </h3>
 
                         <p>
-                            Please try again later.
+                            Components will appear here automatically.
                         </p>
 
                     </div>
 
                 `;
+
+                return;
             }
+
+            /*
+            ========================================
+            RENDER COMPONENTS
+            ========================================
+            */
+
+            gallery.innerHTML =
+
+                components.map(component => `
+
+                    <div class="component-card">
+
+                        <!-- CARD PREVIEW -->
+
+                        <div class="card-preview">
+
+                            <img
+
+                                src="${
+                                    component.preview ||
+                                    './assets/images/fallback-preview.png'
+                                }"
+
+                                alt="${component.title}"
+
+                                loading="lazy"
+
+                                decoding="async"
+
+                                class="card-preview-image"
+
+                                onerror="
+                                    this.onerror=null;
+                                    this.src='./assets/images/fallback-preview.png';
+                                "
+                            >
+
+                            <div class="preview-overlay">
+
+                                <a
+                                    href="${component.path}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="preview-button"
+                                >
+                                    Explore
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- CARD CONTENT -->
+
+                        <div class="card-content">
+
+                            <span class="card-category">
+
+                                ${
+                                    component.collection ||
+                                    'Frontend'
+                                }
+
+                            </span>
+
+                            <h3 class="card-title">
+
+                                ${component.title}
+
+                            </h3>
+
+                            <p class="card-description">
+
+                                ${component.description}
+
+                            </p>
+
+                            <a
+                                href="${component.path}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="card-link"
+                            >
+                                Open Demo →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                `).join('');
+
         }
 
-        /* =========================
-           LOAD GALLERY
-        ========================== */
+        catch(error){
 
-        loadGallery();
+            console.error(
+                'Gallery failed to load:',
+                error
+            );
 
-    </script>
+            gallery.innerHTML = `
 
+                <div class="gallery-error">
+
+                    <h3>
+                        Failed to load components
+                    </h3>
+
+                    <p>
+                        Please try again later.
+                    </p>
+
+                </div>
+
+            `;
+        }
+    }
+
+    /*
+    ========================================
+    LOAD GALLERY
+    ========================================
+    */
+
+    loadGallery();
+
+</script>
 </body>
 </html>
 
