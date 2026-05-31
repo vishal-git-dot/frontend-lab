@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Holographic Dock</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="background-grid"></div>
+  <div class="ambient ambient-1"></div>
+  <div class="ambient ambient-2"></div>
+
+  <main class="scene">
+
+    <div class="dock-wrapper">
+
+      <div class="dock-glow"></div>
+
+      <nav class="holo-dock">
+
+        <button class="dock-item active">
+          <span class="icon">⌂</span>
+          <span class="label">Home</span>
+          <div class="beam"></div>
+        </button>
+
+        <button class="dock-item">
+          <span class="icon">◈</span>
+          <span class="label">Explore</span>
+          <div class="beam"></div>
+        </button>
+
+        <button class="dock-item">
+          <span class="icon">◌</span>
+          <span class="label">Orbit</span>
+          <div class="beam"></div>
+        </button>
+
+        <button class="dock-item core">
+          <div class="core-ring"></div>
+          <div class="core-ring ring-2"></div>
+          <span class="icon">✦</span>
+        </button>
+
+        <button class="dock-item">
+          <span class="icon">△</span>
+          <span class="label">Projects</span>
+          <div class="beam"></div>
+        </button>
+
+        <button class="dock-item">
+          <span class="icon">◎</span>
+          <span class="label">Neural</span>
+          <div class="beam"></div>
+        </button>
+
+        <button class="dock-item">
+          <span class="icon">☰</span>
+          <span class="label">Menu</span>
+          <div class="beam"></div>
+        </button>
+
+      </nav>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
