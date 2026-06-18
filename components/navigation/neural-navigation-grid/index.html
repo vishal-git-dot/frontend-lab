@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neural Navigation Grid</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<div class="neural-container">
+
+    <div class="grid-connections">
+        <svg id="network-svg"></svg>
+    </div>
+
+    <div class="neural-grid">
+
+        <button class="node active" data-index="0">
+            <div class="pulse"></div>
+            <div class="node-icon">◉</div>
+            <span>Core</span>
+        </button>
+
+        <button class="node" data-index="1">
+            <div class="pulse"></div>
+            <div class="node-icon">◈</div>
+            <span>Projects</span>
+        </button>
+
+        <button class="node" data-index="2">
+            <div class="pulse"></div>
+            <div class="node-icon">◎</div>
+            <span>Research</span>
+        </button>
+
+        <button class="node" data-index="3">
+            <div class="pulse"></div>
+            <div class="node-icon">✦</div>
+            <span>Analytics</span>
+        </button>
+
+        <button class="node" data-index="4">
+            <div class="pulse"></div>
+            <div class="node-icon">⬡</div>
+            <span>Systems</span>
+        </button>
+
+        <button class="node" data-index="5">
+            <div class="pulse"></div>
+            <div class="node-icon">✧</div>
+            <span>Archive</span>
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
