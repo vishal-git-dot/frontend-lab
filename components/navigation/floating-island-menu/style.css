@@ -1,0 +1,311 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#050816;
+    --glass:rgba(255,255,255,.07);
+    --border:rgba(255,255,255,.12);
+
+    --cyan:#63f3ff;
+    --purple:#8b5dff;
+
+    --text:#f4f7ff;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Inter,sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#1f4677,transparent 40%),
+    radial-gradient(circle at bottom right,#43166e,transparent 40%),
+    var(--bg);
+}
+
+.ambient-bg{
+    position:fixed;
+    inset:0;
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.4;
+}
+
+.orb-1{
+    width:350px;
+    height:350px;
+    background:#57dfff;
+    top:-120px;
+    left:-100px;
+}
+
+.orb-2{
+    width:300px;
+    height:300px;
+    background:#865dff;
+    right:-80px;
+    bottom:-50px;
+}
+
+.orb-3{
+    width:250px;
+    height:250px;
+    background:#00ffc8;
+    left:50%;
+    top:70%;
+}
+
+.island-wrapper{
+    perspective:1200px;
+}
+
+.floating-island{
+
+    position:relative;
+
+    width:420px;
+    height:82px;
+
+    border-radius:42px;
+
+    background:var(--glass);
+
+    backdrop-filter:blur(30px);
+
+    border:1px solid var(--border);
+
+    overflow:hidden;
+
+    transition:
+    width .7s cubic-bezier(.19,1,.22,1),
+    height .7s cubic-bezier(.19,1,.22,1),
+    border-radius .7s cubic-bezier(.19,1,.22,1);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.floating-island.expanded{
+
+    width:min(92vw,760px);
+    height:520px;
+
+    border-radius:42px;
+}
+
+.island-core{
+
+    height:82px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 24px;
+
+    cursor:pointer;
+
+    position:relative;
+    z-index:10;
+}
+
+.core-glow{
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+    90deg,
+    rgba(99,243,255,.1),
+    rgba(139,93,255,.1));
+}
+
+.logo{
+
+    width:48px;
+    height:48px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--cyan),
+    var(--purple));
+
+    color:#08111e;
+
+    font-weight:700;
+
+    box-shadow:
+    0 0 30px rgba(99,243,255,.5);
+}
+
+.status{
+    color:white;
+    font-weight:600;
+    letter-spacing:.5px;
+}
+
+.menu-icon{
+    width:26px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.menu-icon span{
+    height:2px;
+    border-radius:10px;
+    background:white;
+    transition:.4s;
+}
+
+.expanded .menu-icon span:nth-child(1){
+    transform:translateY(4px) rotate(45deg);
+}
+
+.expanded .menu-icon span:nth-child(2){
+    transform:translateY(-4px) rotate(-45deg);
+}
+
+.island-panel{
+
+    opacity:0;
+    pointer-events:none;
+
+    padding:24px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+
+    transform:translateY(20px);
+
+    transition:.45s ease;
+}
+
+.expanded .island-panel{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+}
+
+.nav-card{
+
+    position:relative;
+
+    min-height:140px;
+
+    border:none;
+
+    border-radius:26px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    text-align:left;
+
+    padding:20px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:
+    transform .45s,
+    border .4s;
+}
+
+.nav-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-40%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(99,243,255,.15),
+    transparent 70%);
+
+    opacity:0;
+
+    transition:.4s;
+}
+
+.nav-card:hover::before{
+    opacity:1;
+}
+
+.nav-card:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.03);
+
+    border-color:
+    rgba(99,243,255,.35);
+}
+
+.nav-card .icon{
+    font-size:1.8rem;
+    margin-bottom:14px;
+}
+
+.nav-card h4{
+    margin-bottom:8px;
+}
+
+.nav-card p{
+    opacity:.65;
+    font-size:.85rem;
+}
+
+.nav-card.active{
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(99,243,255,.18),
+    rgba(139,93,255,.18));
+
+    border-color:
+    rgba(99,243,255,.4);
+}
+
+@media(max-width:768px){
+
+    .floating-island{
+        width:92vw;
+    }
+
+    .floating-island.expanded{
+        height:auto;
+    }
+
+    .island-panel{
+        grid-template-columns:1fr;
+    }
+}
