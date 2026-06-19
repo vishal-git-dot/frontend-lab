@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyberpunk Command Panel</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="command-panel">
+
+    <div class="scanline"></div>
+
+    <div class="panel-header">
+        <div class="system-status">
+            <span class="pulse"></span>
+            SYSTEM ONLINE
+        </div>
+
+        <div class="time" id="clock">
+            00:00:00
+        </div>
+    </div>
+
+    <div class="command-grid">
+
+        <button class="command-btn active">
+            <span class="icon">⌘</span>
+            <span>DASHBOARD</span>
+        </button>
+
+        <button class="command-btn">
+            <span class="icon">◈</span>
+            <span>NETWORK</span>
+        </button>
+
+        <button class="command-btn">
+            <span class="icon">⬢</span>
+            <span>SECURITY</span>
+        </button>
+
+        <button class="command-btn">
+            <span class="icon">◎</span>
+            <span>SYSTEMS</span>
+        </button>
+
+        <button class="command-btn">
+            <span class="icon">◉</span>
+            <span>ANALYTICS</span>
+        </button>
+
+        <button class="command-btn">
+            <span class="icon">⬡</span>
+            <span>ARCHIVE</span>
+        </button>
+
+    </div>
+
+    <div class="status-panel">
+
+        <div class="status-card">
+            <h4>CPU</h4>
+            <div class="meter">
+                <div class="fill cpu"></div>
+            </div>
+        </div>
+
+        <div class="status-card">
+            <h4>NETWORK</h4>
+            <div class="meter">
+                <div class="fill network"></div>
+            </div>
+        </div>
+
+        <div class="status-card">
+            <h4>POWER</h4>
+            <div class="meter">
+                <div class="fill power"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
