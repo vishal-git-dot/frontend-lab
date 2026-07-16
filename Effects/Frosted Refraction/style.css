@@ -1,0 +1,1692 @@
+/*==========================================================
+  Frosted Refraction Card
+  Part 1/4
+  Reset • Variables • Background • Layout • Glass Card
+==========================================================*/
+
+/*==========================
+RESET
+==========================*/
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    font-size:16px;
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    font-family:"Inter",sans-serif;
+
+    background:#07111d;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+/*==========================
+VARIABLES
+==========================*/
+
+:root{
+
+    --bg:#07111d;
+
+    --bg2:#091d32;
+
+    --bg3:#04101d;
+
+    --glass:rgba(255,255,255,.09);
+
+    --glass2:rgba(255,255,255,.05);
+
+    --border:rgba(255,255,255,.18);
+
+    --shadow:
+        0 40px 120px rgba(0,0,0,.45);
+
+    --primary:#7de2ff;
+
+    --secondary:#8f8cff;
+
+    --cyan:#00e5ff;
+
+    --purple:#6e7dff;
+
+    --pink:#ff4ef6;
+
+    --green:#5bffc6;
+
+    --radius:34px;
+
+    --transition:.55s cubic-bezier(.19,1,.22,1);
+
+}
+
+/*==========================
+BACKGROUND
+==========================*/
+
+.bg-gradient{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-5;
+
+    background:
+
+        radial-gradient(circle at 15% 20%,
+        rgba(0,255,255,.18),
+        transparent 35%),
+
+        radial-gradient(circle at 80% 25%,
+        rgba(150,80,255,.20),
+        transparent 40%),
+
+        radial-gradient(circle at 65% 80%,
+        rgba(255,0,180,.15),
+        transparent 35%),
+
+        linear-gradient(
+        135deg,
+        var(--bg),
+        var(--bg2),
+        var(--bg3));
+
+    animation:bgShift 18s linear infinite alternate;
+
+}
+
+/*==========================
+GRID
+==========================*/
+
+.bg-grid{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-4;
+
+    opacity:.12;
+
+    background-image:
+
+        linear-gradient(
+        rgba(255,255,255,.05) 1px,
+        transparent 1px),
+
+        linear-gradient(
+        90deg,
+        rgba(255,255,255,.05) 1px,
+        transparent 1px);
+
+    background-size:45px 45px;
+
+    mask-image:
+        radial-gradient(circle,
+        white 45%,
+        transparent 100%);
+
+}
+
+/*==========================
+NOISE
+==========================*/
+
+.noise{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:50;
+
+    pointer-events:none;
+
+    opacity:.035;
+
+    background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+
+    mix-blend-mode:soft-light;
+
+}
+
+/*==========================
+MAIN
+==========================*/
+
+.hero{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:80px 24px;
+
+}
+
+/*==========================
+CARD
+==========================*/
+
+.glass-card{
+
+    position:relative;
+
+    width:min(470px,100%);
+
+    min-height:640px;
+
+    border-radius:var(--radius);
+
+    overflow:hidden;
+
+    background:var(--glass);
+
+    backdrop-filter:
+
+        blur(24px)
+        saturate(170%);
+
+    -webkit-backdrop-filter:
+
+        blur(24px)
+        saturate(170%);
+
+    border:1px solid var(--border);
+
+    box-shadow:
+
+        var(--shadow),
+
+        inset 0 1px 0 rgba(255,255,255,.25),
+
+        inset 0 -2px 8px rgba(255,255,255,.04);
+
+    transform-style:preserve-3d;
+
+    transition:
+
+        transform .25s ease,
+
+        box-shadow .5s ease;
+
+    isolation:isolate;
+
+}
+
+/*==========================
+BORDER
+==========================*/
+
+.glass-border{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:inherit;
+
+    pointer-events:none;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(255,255,255,.35),
+
+        transparent 25%,
+
+        transparent 75%,
+
+        rgba(255,255,255,.2)
+
+    );
+
+    mix-blend-mode:screen;
+
+}
+
+/*==========================
+CONTENT
+==========================*/
+
+.content{
+
+    position:relative;
+
+    z-index:15;
+
+    padding:52px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
+}
+
+/*==========================
+BADGE
+==========================*/
+
+.badge{
+
+    width:max-content;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    border:
+
+        1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(14px);
+
+    color:#d8f8ff;
+
+    font-size:.82rem;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+    font-weight:700;
+
+    margin-bottom:34px;
+
+    box-shadow:
+
+        inset 0 1px 0 rgba(255,255,255,.3);
+
+}
+
+/*==========================
+TITLE
+==========================*/
+
+.content h1{
+
+    font-size:4rem;
+
+    line-height:.92;
+
+    font-weight:800;
+
+    letter-spacing:-.05em;
+
+    margin-bottom:28px;
+
+    background:
+
+        linear-gradient(
+
+        180deg,
+
+        white,
+
+        #bfe9ff 65%,
+
+        #80d7ff);
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    text-shadow:
+
+        0 0 25px rgba(125,226,255,.15);
+
+}
+
+/*==========================
+TEXT
+==========================*/
+
+.content p{
+
+    color:
+
+    rgba(230,240,255,.82);
+
+    line-height:1.8;
+
+    font-size:1rem;
+
+    max-width:340px;
+
+    margin-bottom:42px;
+
+}
+
+/*==========================
+BUTTONS
+==========================*/
+
+.actions{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-top:auto;
+
+}
+
+/*==========================================================
+  Frosted Refraction Card
+  Part 2/4
+  Buttons • Frost Layers • Refraction • Holographic Effects
+==========================================================*/
+
+/*==========================
+PRIMARY BUTTON
+==========================*/
+
+.primary{
+
+    position:relative;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:16px 26px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    font-size:.95rem;
+
+    font-weight:700;
+
+    letter-spacing:.02em;
+
+    background:
+        linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--purple));
+
+    box-shadow:
+        0 20px 40px rgba(0,229,255,.18),
+        inset 0 1px 1px rgba(255,255,255,.35);
+
+    transition:var(--transition);
+
+}
+
+.primary svg{
+
+    width:18px;
+
+    height:18px;
+
+    transition:.45s;
+
+}
+
+.primary::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    background:
+
+        linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,.55),
+        transparent 80%);
+
+    transform:translateX(-130%);
+
+    transition:.8s;
+
+}
+
+.primary:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        0 30px 60px rgba(0,229,255,.28);
+
+}
+
+.primary:hover::before{
+
+    transform:translateX(130%);
+
+}
+
+.primary:hover svg{
+
+    transform:translateX(5px);
+
+}
+
+.primary:active{
+
+    transform:scale(.96);
+
+}
+
+/*==========================
+SECONDARY BUTTON
+==========================*/
+
+.secondary{
+
+    position:relative;
+
+    padding:16px 24px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.14);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    backdrop-filter:blur(14px);
+
+    transition:var(--transition);
+
+}
+
+.secondary:hover{
+
+    background:rgba(255,255,255,.09);
+
+    transform:translateY(-3px);
+
+    border-color:rgba(255,255,255,.28);
+
+}
+
+.secondary:active{
+
+    transform:scale(.96);
+
+}
+
+/*==========================
+LIGHT TRACKER
+==========================*/
+
+.light{
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:
+
+        radial-gradient(circle,
+
+        rgba(255,255,255,.35),
+
+        rgba(125,226,255,.15),
+
+        transparent 70%);
+
+    mix-blend-mode:screen;
+
+    filter:blur(18px);
+
+    opacity:.65;
+
+    transition:
+
+        left .12s linear,
+
+        top .12s linear,
+
+        opacity .35s;
+
+}
+
+/*==========================
+FROST LAYER
+==========================*/
+
+.frost-layer{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(255,255,255,.16),
+
+            rgba(255,255,255,.03)
+
+        );
+
+    backdrop-filter:
+
+        blur(40px)
+
+        saturate(160%);
+
+    opacity:.9;
+
+    z-index:2;
+
+}
+
+/*==========================
+REFRACTION LAYER
+==========================*/
+
+.refraction-layer{
+
+    position:absolute;
+
+    inset:-40%;
+
+    pointer-events:none;
+
+    z-index:3;
+
+    opacity:.7;
+
+    background:
+
+        radial-gradient(
+
+            circle at 20% 20%,
+
+            rgba(255,255,255,.22),
+
+            transparent 20%
+
+        ),
+
+        radial-gradient(
+
+            circle at 75% 30%,
+
+            rgba(0,229,255,.18),
+
+            transparent 24%
+
+        ),
+
+        radial-gradient(
+
+            circle at 70% 80%,
+
+            rgba(255,0,180,.15),
+
+            transparent 22%
+
+        ),
+
+        radial-gradient(
+
+            circle at 25% 75%,
+
+            rgba(111,125,255,.18),
+
+            transparent 24%
+
+        );
+
+    filter:
+
+        blur(70px)
+
+        saturate(170%);
+
+    animation:
+
+        refractionFloat 12s ease-in-out infinite alternate;
+
+}
+
+/*==========================
+HOLOGRAPHIC LAYER
+==========================*/
+
+.holo-layer{
+
+    position:absolute;
+
+    inset:-40%;
+
+    z-index:4;
+
+    pointer-events:none;
+
+    opacity:.38;
+
+    mix-blend-mode:screen;
+
+    background:
+
+        conic-gradient(
+
+            from 0deg,
+
+            rgba(255,0,180,.22),
+
+            rgba(0,255,255,.18),
+
+            rgba(110,125,255,.22),
+
+            rgba(255,255,255,.08),
+
+            rgba(255,0,180,.22)
+
+        );
+
+    filter:
+
+        blur(90px)
+
+        saturate(170%);
+
+    animation:
+
+        holoRotate 18s linear infinite;
+
+}
+
+/*==========================
+CARD GLOW
+==========================*/
+
+.card-glow{
+
+    position:absolute;
+
+    inset:-35%;
+
+    pointer-events:none;
+
+    z-index:1;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(0,229,255,.28),
+
+            transparent 60%
+
+        );
+
+    filter:blur(100px);
+
+    animation:
+
+        pulseGlow 7s ease-in-out infinite;
+
+}
+
+/*==========================
+CAUSTIC LAYER
+==========================*/
+
+.caustic-layer{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:5;
+
+    pointer-events:none;
+
+    opacity:.12;
+
+    mix-blend-mode:screen;
+
+    background:
+
+        repeating-linear-gradient(
+
+            120deg,
+
+            rgba(255,255,255,.22) 0px,
+
+            transparent 3px,
+
+            transparent 18px
+
+        );
+
+    animation:
+
+        causticsMove 14s linear infinite;
+
+}
+
+/*==========================
+CARD HOVER
+==========================*/
+
+.glass-card:hover{
+
+    transform:
+
+        perspective(1400px)
+
+        rotateX(5deg)
+
+        rotateY(-5deg)
+
+        translateY(-8px)
+
+        scale(1.015);
+
+    box-shadow:
+
+        0 55px 120px rgba(0,0,0,.45),
+
+        0 0 80px rgba(125,226,255,.12),
+
+        inset 0 1px rgba(255,255,255,.28);
+
+}
+
+.glass-card:hover .card-glow{
+
+    opacity:1;
+
+}
+
+.glass-card:hover .holo-layer{
+
+    opacity:.55;
+
+}
+
+.glass-card:hover .refraction-layer{
+
+    transform:scale(1.08);
+
+}
+
+/*==========================================================
+  Frosted Refraction Card
+  Part 3/4
+  Orbs • Particles • Depth • Hover FX • Responsive
+==========================================================*/
+
+/*==========================
+DECORATIVE ORBS
+==========================*/
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(2px);
+    z-index:6;
+    transition:transform .6s ease;
+}
+
+.orb::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:inherit;
+    filter:blur(25px);
+    opacity:.75;
+}
+
+.orb-1{
+    width:140px;
+    height:140px;
+    top:-40px;
+    right:-30px;
+    background:
+        radial-gradient(circle at 30% 30%,
+        rgba(255,255,255,.9),
+        rgba(0,229,255,.55),
+        rgba(0,229,255,.06));
+    animation:orbFloat1 8s ease-in-out infinite;
+}
+
+.orb-2{
+    width:90px;
+    height:90px;
+    left:-25px;
+    bottom:80px;
+    background:
+        radial-gradient(circle,
+        rgba(255,255,255,.9),
+        rgba(255,80,220,.5),
+        rgba(255,80,220,.05));
+    animation:orbFloat2 11s ease-in-out infinite;
+}
+
+.orb-3{
+    width:60px;
+    height:60px;
+    right:70px;
+    bottom:-15px;
+    background:
+        radial-gradient(circle,
+        rgba(255,255,255,.95),
+        rgba(120,120,255,.45),
+        transparent);
+    animation:orbFloat3 9s ease-in-out infinite;
+}
+
+.glass-card:hover .orb-1{
+    transform:translateY(-10px) scale(1.08);
+}
+
+.glass-card:hover .orb-2{
+    transform:translateX(8px);
+}
+
+.glass-card:hover .orb-3{
+    transform:translateY(-8px);
+}
+
+/*==========================
+PARTICLES
+==========================*/
+
+.particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    z-index:7;
+    pointer-events:none;
+}
+
+.particles span{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,.85);
+    box-shadow:
+        0 0 15px rgba(255,255,255,.7),
+        0 0 30px rgba(0,229,255,.4);
+}
+
+.particles span:nth-child(1){
+    left:12%;
+    top:75%;
+    animation:particle1 12s linear infinite;
+}
+
+.particles span:nth-child(2){
+    left:28%;
+    top:88%;
+    width:4px;
+    height:4px;
+    animation:particle2 10s linear infinite;
+}
+
+.particles span:nth-child(3){
+    left:52%;
+    top:95%;
+    animation:particle3 11s linear infinite;
+}
+
+.particles span:nth-child(4){
+    left:76%;
+    top:85%;
+    width:5px;
+    height:5px;
+    animation:particle4 13s linear infinite;
+}
+
+.particles span:nth-child(5){
+    left:88%;
+    top:72%;
+    animation:particle5 15s linear infinite;
+}
+
+.particles span:nth-child(6){
+    left:40%;
+    top:82%;
+    width:3px;
+    height:3px;
+    animation:particle6 9s linear infinite;
+}
+
+/*==========================
+DEPTH
+==========================*/
+
+.content>*{
+    position:relative;
+    z-index:15;
+    transform:translateZ(40px);
+}
+
+.badge{
+    transform:translateZ(70px);
+}
+
+.content h1{
+    transform:translateZ(95px);
+}
+
+.content p{
+    transform:translateZ(55px);
+}
+
+.actions{
+    transform:translateZ(75px);
+}
+
+/*==========================
+BUTTON EFFECTS
+==========================*/
+
+.primary,
+.secondary{
+    isolation:isolate;
+}
+
+.primary::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:
+        radial-gradient(circle at top,
+        rgba(255,255,255,.35),
+        transparent 70%);
+    opacity:.7;
+    z-index:-1;
+}
+
+.secondary::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    border:1px solid rgba(255,255,255,.12);
+    opacity:0;
+    transition:.45s;
+}
+
+.secondary:hover::before{
+    opacity:1;
+}
+
+/*==========================
+GLASS SHINE
+==========================*/
+
+.glass-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-150%;
+
+    left:-40%;
+
+    width:60%;
+
+    height:300%;
+
+    transform:rotate(25deg);
+
+    background:
+        linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.22),
+        transparent);
+
+    opacity:.45;
+
+    pointer-events:none;
+
+    transition:1s;
+
+}
+
+.glass-card:hover::before{
+
+    left:120%;
+
+}
+
+/*==========================
+BOTTOM SHADOW
+==========================*/
+
+.glass-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:10%;
+
+    right:10%;
+
+    bottom:-45px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,
+        rgba(0,0,0,.55),
+        transparent 75%);
+
+    filter:blur(18px);
+
+    z-index:-2;
+
+}
+
+/*==========================
+FOCUS STATES
+==========================*/
+
+button:focus-visible{
+
+    outline:none;
+
+    box-shadow:
+
+        0 0 0 3px rgba(255,255,255,.15),
+        0 0 0 7px rgba(0,229,255,.25);
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media (max-width:768px){
+
+    .glass-card{
+
+        width:100%;
+        min-height:auto;
+
+    }
+
+    .content{
+
+        padding:36px;
+
+    }
+
+    .content h1{
+
+        font-size:3rem;
+
+    }
+
+    .actions{
+
+        flex-direction:column;
+
+    }
+
+    .primary,
+    .secondary{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .orb-1{
+        width:110px;
+        height:110px;
+    }
+
+    .orb-2{
+        width:70px;
+        height:70px;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .hero{
+
+        padding:24px;
+
+    }
+
+    .content{
+
+        padding:28px;
+
+    }
+
+    .content h1{
+
+        font-size:2.35rem;
+
+    }
+
+    .content p{
+
+        font-size:.94rem;
+
+    }
+
+    .badge{
+
+        font-size:.72rem;
+
+        padding:8px 14px;
+
+    }
+
+}
+
+/*==========================================================
+  Frosted Refraction Card
+  Part 4/4
+  Animations • Motion • Final Polish
+==========================================================*/
+
+/*==========================
+BACKGROUND
+==========================*/
+
+@keyframes bgShift{
+
+    0%{
+        filter:hue-rotate(0deg);
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        filter:hue-rotate(20deg);
+        transform:scale(1);
+    }
+
+}
+
+/*==========================
+REFRACTION
+==========================*/
+
+@keyframes refractionFloat{
+
+    0%{
+        transform:
+            translate(-3%,-2%)
+            rotate(0deg)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate(2%,3%)
+            rotate(8deg)
+            scale(1.08);
+    }
+
+    100%{
+        transform:
+            translate(-2%,1%)
+            rotate(-6deg)
+            scale(1);
+    }
+
+}
+
+/*==========================
+HOLOGRAPHIC
+==========================*/
+
+@keyframes holoRotate{
+
+    from{
+        transform:rotate(0deg) scale(1);
+    }
+
+    to{
+        transform:rotate(360deg) scale(1.08);
+    }
+
+}
+
+/*==========================
+CARD GLOW
+==========================*/
+
+@keyframes pulseGlow{
+
+    0%,100%{
+        opacity:.45;
+        transform:scale(.95);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.08);
+    }
+
+}
+
+/*==========================
+CAUSTICS
+==========================*/
+
+@keyframes causticsMove{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:320px 180px;
+    }
+
+}
+
+/*==========================
+ORBS
+==========================*/
+
+@keyframes orbFloat1{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            translateX(0);
+    }
+
+    50%{
+        transform:
+            translateY(-18px)
+            translateX(10px);
+    }
+
+}
+
+@keyframes orbFloat2{
+
+    0%,100%{
+        transform:
+            translateX(0)
+            translateY(0);
+    }
+
+    50%{
+        transform:
+            translateX(-12px)
+            translateY(-18px);
+    }
+
+}
+
+@keyframes orbFloat3{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+/*==========================
+PARTICLES
+==========================*/
+
+@keyframes particle1{
+
+    from{
+        transform:translateY(0) scale(.8);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translateY(-560px)
+            translateX(40px)
+            scale(1.2);
+        opacity:0;
+    }
+
+}
+
+@keyframes particle2{
+
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.9;
+    }
+
+    to{
+        transform:
+            translateY(-620px)
+            translateX(-20px);
+        opacity:0;
+    }
+
+}
+
+@keyframes particle3{
+
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    25%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translateY(-540px)
+            translateX(15px);
+        opacity:0;
+    }
+
+}
+
+@keyframes particle4{
+
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translateY(-610px)
+            translateX(-25px);
+        opacity:0;
+    }
+
+}
+
+@keyframes particle5{
+
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translateY(-590px)
+            translateX(25px);
+        opacity:0;
+    }
+
+}
+
+@keyframes particle6{
+
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.8;
+    }
+
+    to{
+        transform:
+            translateY(-520px)
+            translateX(-15px);
+        opacity:0;
+    }
+
+}
+
+/*==========================
+FLOATING CARD
+==========================*/
+
+@keyframes cardFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
+
+.glass-card{
+
+    animation:cardFloat 8s ease-in-out infinite;
+
+}
+
+/*==========================
+TEXT
+==========================*/
+
+.content h1{
+
+    animation:titleGlow 5s ease-in-out infinite;
+
+}
+
+@keyframes titleGlow{
+
+    0%,100%{
+
+        text-shadow:
+            0 0 20px rgba(125,226,255,.15);
+
+    }
+
+    50%{
+
+        text-shadow:
+            0 0 35px rgba(125,226,255,.35),
+            0 0 60px rgba(111,125,255,.2);
+
+    }
+
+}
+
+/*==========================
+BADGE
+==========================*/
+
+.badge{
+
+    animation:badgePulse 4s ease infinite;
+
+}
+
+@keyframes badgePulse{
+
+    0%,100%{
+
+        box-shadow:
+            inset 0 1px rgba(255,255,255,.25);
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 20px rgba(0,229,255,.18),
+            inset 0 1px rgba(255,255,255,.35);
+
+    }
+
+}
+
+/*==========================
+ACCESSIBILITY
+==========================*/
+
+@media (prefers-reduced-motion: reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+/*==========================
+SCROLLBAR
+==========================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#08121d;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        var(--cyan),
+        var(--purple));
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:linear-gradient(
+        var(--green),
+        var(--pink));
+
+}
+
+/*==========================================================
+END OF style.css
+==========================================================*/
