@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>Frosted Refraction Card</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-grid"></div>
+<div class="noise"></div>
+
+<main class="hero">
+
+    <section class="glass-card" id="glassCard">
+
+        <!-- animated glow -->
+        <div class="card-glow"></div>
+
+        <!-- refraction -->
+        <div class="refraction-layer"></div>
+
+        <!-- holographic shine -->
+        <div class="holo-layer"></div>
+
+        <!-- frost -->
+        <div class="frost-layer"></div>
+
+        <!-- caustic -->
+        <div class="caustic-layer"></div>
+
+        <!-- border -->
+        <div class="glass-border"></div>
+
+        <!-- floating particles -->
+        <div class="particles">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+        <div class="content">
+
+            <div class="badge">
+                Experimental UI
+            </div>
+
+            <h1>
+                Frosted<br>
+                Refraction
+            </h1>
+
+            <p>
+
+                Premium glassmorphism interface with layered
+                optical distortion, volumetric lighting,
+                neural glow and dynamic mouse tracking.
+
+            </p>
+
+            <div class="actions">
+
+                <button class="primary">
+
+                    <span>Explore</span>
+
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M5 12H19M19 12L13 6M19 12L13 18"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
+
+                </button>
+
+                <button class="secondary">
+
+                    Source
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- depth objects -->
+
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+        <!-- light tracker -->
+
+        <div class="light"></div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
