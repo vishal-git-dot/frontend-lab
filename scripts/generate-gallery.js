@@ -14,7 +14,7 @@ const COLLECTIONS = [
     'components',
     'animations',
     'experiments',
-    'effects',
+    'Effects',
     'snippets'
 ];
 
