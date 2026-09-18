@@ -15,7 +15,8 @@ const COLLECTIONS = [
     'animations',
     'experiments',
     'Effects',
-    'snippets'
+    'snippets',
+    'pages',
 ];
 
 const OUTPUT_DIR = path.join(
