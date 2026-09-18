@@ -15,7 +15,7 @@ const ROOT_DIR = path.join(__dirname, '..');
 const COLLECTIONS = [
     'components',
     'animations',
-    'effects',
+    'Effects',
     'experiments',
     'snippets'
 ];
